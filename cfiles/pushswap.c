@@ -6,11 +6,11 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:10:45 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 19:28:21 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:09:58 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "pushswap.h"
 
 int printf_ret(void)
 {
@@ -21,23 +21,34 @@ int printf_ret(void)
 int main(int argc, char **argv)
 {
     int i;
-    t_stack *stack;
+    t_stack *stack_a;
+    t_stack *stack_b;
 
     if (argc < 2)
-        return (printf("Error\n"), EXIT_FAILURE);
-
-    stack = create_stack();
-    if (!stack)
-        return (printf("Error\n"), EXIT_FAILURE);
-    
-    for (i = 1; i < argc; i++)
+        return (printf_ret());
+    stack_a = create_stack();
+    if (!stack_a)
+        return (printf_ret());
+    stack_b = create_stack();
+    if (!stack_b)
     {
-        if (validate_argument(argv[i]) == EXIT_FAILURE || has_duplicates(argc, argv))
-            return (free_stack(stack), printf("Error\n"), EXIT_FAILURE);
-        push(stack, ft_atoi(argv[i]));
+        free_stack(stack_a);
+        return (printf_ret());
     }
-    radix_sort(stack, argc - 1);
-    
-    free_stack(stack);
-    return EXIT_SUCCESS;
+    i = 1;
+    while (i < argc)
+    {
+        if (validate_argument(argv[i]) == EXIT_FAILURE
+            || has_duplicates(argc, argv))
+        {
+            free_stack(stack_a);
+            return (printf_ret());
+        }
+        create_elements(stack_a, ft_atoi(argv[i]));
+        i++;
+    }
+    radix_sort(stack_a, stack_b, argc - 1);
+    free_stack(stack_a);
+    free_stack(stack_b);
+    return (EXIT_SUCCESS);
 }

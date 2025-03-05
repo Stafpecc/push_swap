@@ -6,11 +6,11 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:28:22 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 19:29:03 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:41:11 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "pushswap.h"
 
 int validate_argument(char *arg)
 {

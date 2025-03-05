@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 16:17:45 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:09:48 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,58 +29,35 @@ typedef struct s_stack
     t_node *bottom;
 } t_stack;
 
-/**
- * @brief Pushes a value onto the stack.
- * 
- * @param stack A pointer to the stack.
- * @param value The value to be pushed onto the stack.
- */
-int push(t_stack *stack, int value);
 
-/**
- * @brief Pops a value from the stack.
- * 
- * @param stack A pointer to the stack.
- * @return The value popped from the stack.
- */
-int pop(t_stack *stack);
-
-/**
- * @brief Swaps the top two elements of the stack.
- * 
- * @param stack A pointer to the stack.
- */
-int swap(t_stack *stack);
-
-/**
- * @brief Rotates the stack upwards.
- * 
- * The top element becomes the bottom element.
- * 
- * @param stack A pointer to the stack.
- */
-int rotate(t_stack *stack);
-
-/**
- * @brief Rotates the stack downwards.
- * 
- * The bottom element becomes the top element.
- * 
- * @param stack A pointer to the stack.
- */
 int reverse_rotate(t_stack *stack);
+int rra(t_stack *stack);
+int rrb(t_stack *stack);
+int rrr(t_stack *stack_a, t_stack *stack_b);
 
-/**
- * @brief Sorts the stack.
- * 
- * @param stack A pointer to the stack.
- */
-int sort_stack(t_stack *stack);
+int swap(t_stack *stack);
+int sa(t_stack *stack);
+int sb(t_stack *stack);
+int ss(t_stack *stack_a, t_stack *stack_b);
+
+int rotate(t_stack *stack);
+int ra(t_stack *stack);
+int rb(t_stack *stack);
+int rr(t_stack *stack_a, t_stack *stack_b);
+
+int push(t_stack *stack_1, t_stack *stack_2);
+int pa(t_stack *stack_a, t_stack *stack_b);
+int pb(t_stack *stack_a, t_stack *stack_b);
+
+int validate_argument(char *arg);
+int has_duplicates(int argc, char **argv);
 
 t_stack *create_stack();
-void free_stack(t_stack *stack);
 int peek(t_stack *stack);
 int is_empty(t_stack *stack);
+void free_stack(t_stack *stack);
+int create_elements(t_stack *stack, int value);
 
+void radix_sort(t_stack *stack_a, t_stack *stack_b, int size);
 
 #endif

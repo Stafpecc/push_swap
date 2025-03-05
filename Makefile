@@ -24,7 +24,13 @@ LIBFT_PATH      = $(LIBFT_DIR)$(LIBFT_NAME)
 CFILES          = \
 			pushswap				\
 			sort					\
-			utils_functions
+			check					\
+			push					\
+			rotate					\
+			reverse_rotate			\
+			radix					\
+			swap					\
+
 
 SRC				= $(patsubst %, $(CFILES_DIR)%.c, $(CFILES))
 OBJS			= $(patsubst $(CFILES_DIR)%.c, .objs/%.o, $(SRC))
@@ -209,7 +215,7 @@ $(EXEC_DIR):
 $(OBJS_DIR)%.o: $(CFILES_DIR)%.c $(INCLUDE) | $(OBJS_DIR)
 	echo "$(PURPLE)Compiling $<...$(RESET)"
 
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 	echo "$(GREEN)$< completed successfully!$(RESET)"
 

@@ -6,18 +6,20 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:27:47 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 19:28:08 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:10:58 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#include "pushswap.h"
 
-int get_max_bits(t_stack *stack)
+static int get_max_bits(t_stack *stack)
 {
-    int max = peek(stack);
+    int max;
     int bits = 0;
-    t_node *current = stack->top;
+    t_node *current;
     
+    max = peek(stack);
+    current = stack->top;
     while (current)
     {
         if (current->value > max)
@@ -29,25 +31,29 @@ int get_max_bits(t_stack *stack)
     return bits;
 }
 
-void radix_sort(t_stack *stack, int size)
+void radix_sort(t_stack *stack_a, t_stack *stack_b, int size)
 {
-    int max_bits = get_max_bits(stack);
-    int i, j, num;
-    t_stack *stack_b = create_stack();
+    int max_bits;
+    int i;
+    int num;
+    int count;
     
-    for (i = 0; i < max_bits; i++)
+    max_bits = get_max_bits(stack_a);
+    i = 0;
+    while (i < max_bits)
     {
-        int count = size;
+        count = size;
         while (count--)
         {
-            num = peek(stack);
+            num = peek(stack_a);
             if ((num >> i) & 1)
-                rotate(stack);
+                ra(stack_a);
             else
-                push(stack_b, pop(stack));
+                pb(stack_a, stack_b);
         }
         while (!is_empty(stack_b))
-            push(stack, pop(stack_b));
+            pa(stack_a, stack_b);
+        i++;
     }
     free_stack(stack_b);
 }
