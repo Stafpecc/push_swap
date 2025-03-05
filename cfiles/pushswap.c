@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:10:45 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 20:40:50 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 21:55:07 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ int	main(int argc, char **argv)
 	int		i;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		error;
 
+	error = 0;
 	if (argc < 2)
 		return (printf_ret());
 	stack_a = create_stack();
@@ -62,7 +64,8 @@ int	main(int argc, char **argv)
 	{
 		if (validate_argument(argv[i]) == EXIT_FAILURE
 			|| has_duplicates(argc, argv) || create_elements(stack_a,
-				ft_atoi(argv[i])) == EXIT_FAILURE)
+				ft_atoi_overflow(argv[i], &error)) == EXIT_FAILURE || error
+			== EXIT_FAILURE)
 			return (printf_ret_free_all_stack(stack_a, stack_b));
 		i--;
 	}

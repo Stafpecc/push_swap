@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:27:47 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 19:46:56 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 21:35:34 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,34 @@
 
 static void	sort_three(t_stack *stack)
 {
-	int	biggest;
+	int	first;
+	int	second;
+	int	third;
 
-	biggest = find_biggest(stack);
-	if (stack->top->index == biggest)
-		ra(stack);
-	else if (stack->top->next->index == biggest)
-		ra(stack);
-	if (stack->top->index > stack->top->next->index)
+	first = stack->top->index;
+	second = stack->top->next->index;
+	third = stack->top->next->next->index;
+	if (first > second && second < third && first < third)
 		sa(stack);
+	else if (first > second && second > third && first > third)
+	{
+		sa(stack);
+		rra(stack);
+	}
+	else if (first > second && second < third && first > third)
+		ra(stack);
+	else if (first < second && second > third && first < third)
+	{
+		sa(stack);
+		ra(stack);
+	}
+	else if (first < second && second > third && first > third)
+		rra(stack);
 }
 
 static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
-	int	size;
-
-	size = count_nodes(stack_a);
-	while (size--)
+	while (count_nodes(stack_a) > 3)
 	{
 		if (stack_a->top->index == 0 || stack_a->top->index == 1)
 			pb(stack_a, stack_b);
@@ -38,10 +49,11 @@ static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 			ra(stack_a);
 	}
 	sort_three(stack_a);
+	if (stack_b->top && stack_b->top->next && stack_b->top->index
+		< stack_b->top->next->index)
+		sb(stack_b);
 	pa(stack_a, stack_b);
 	pa(stack_a, stack_b);
-	if (stack_a->top->index > stack_a->top->next->index)
-		sa(stack_a);
 }
 
 static void	radix_sort(t_stack *stack_a, t_stack *stack_b)
@@ -67,7 +79,7 @@ static void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 				pb(stack_a, stack_b);
 			j++;
 		}
-		while (stack_b->top)
+		while (stack_b && stack_b->top)
 			pa(stack_a, stack_b);
 		i++;
 	}
