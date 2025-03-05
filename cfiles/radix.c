@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:27:47 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 18:10:45 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:46:56 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	sort_three(t_stack *stack)
 	int	biggest;
 
 	biggest = find_biggest(stack);
-	if (stack->top->value == biggest)
+	if (stack->top->index == biggest)
 		ra(stack);
-	else if (stack->top->next->value == biggest)
+	else if (stack->top->next->index == biggest)
 		ra(stack);
-	if (stack->top->value > stack->top->next->value)
+	if (stack->top->index > stack->top->next->index)
 		sa(stack);
 }
 
@@ -32,7 +32,7 @@ static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	size = count_nodes(stack_a);
 	while (size--)
 	{
-		if (stack_a->top->value == 0 || stack_a->top->value == 1)
+		if (stack_a->top->index == 0 || stack_a->top->index == 1)
 			pb(stack_a, stack_b);
 		else
 			ra(stack_a);
@@ -40,7 +40,7 @@ static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	sort_three(stack_a);
 	pa(stack_a, stack_b);
 	pa(stack_a, stack_b);
-	if (stack_a->top->value > stack_a->top->next->value)
+	if (stack_a->top->index > stack_a->top->next->index)
 		sa(stack_a);
 }
 
@@ -61,7 +61,7 @@ static void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 		j = 0;
 		while (j < size)
 		{
-			if (((stack_a->top->value >> i) & 1))
+			if (((stack_a->top->index >> i) & 1))
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);

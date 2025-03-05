@@ -6,28 +6,36 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:10:45 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 18:09:39 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:46:43 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	printf_ret(void)
+static int	printf_ret(void)
 {
 	ft_printf("Error\n");
 	return (EXIT_FAILURE);
 }
 
-void	print_stack(t_stack *stack)
+static int	printf_ret_free_all_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*current;
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (printf_ret());
+}
 
-	current = stack->top;
-	while (current)
-	{
-		ft_printf("%d\n", current->value);
-		current = current->next;
-	}
+static int	printf_ret_free_stack_a(t_stack *stack_a)
+{
+	free_stack(stack_a);
+	return (printf_ret());
+}
+
+static int	ret_free_success(t_stack *stack_a, t_stack *stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -43,27 +51,18 @@ int	main(int argc, char **argv)
 		return (printf_ret());
 	stack_b = create_stack();
 	if (!stack_b)
-	{
-		free_stack(stack_a);
-		return (printf_ret());
-	}
-	i = 1;
-	while (i < argc)
+		return (printf_ret_free_stack_a(stack_a));
+	i = argc - 1;
+	while (i > 0)
 	{
 		if (validate_argument(argv[i]) == EXIT_FAILURE
 			|| has_duplicates(argc, argv))
-		{
-			free_stack(stack_a);
-			free_stack(stack_b);
-			return (printf_ret());
-		}
+			return (printf_ret_free_all_stack(stack_a, stack_b));
 		create_elements(stack_a, ft_atoi(argv[i]));
-		i++;
+		i--;
 	}
-	print_stack(stack_a);
+	if (array_index(stack_a) == EXIT_FAILURE)
+		return (printf_ret_free_all_stack(stack_a, stack_b));
 	sort_stack(stack_a, stack_b);
-	print_stack(stack_a);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	return (EXIT_SUCCESS);
+	return (ret_free_success(stack_a, stack_b));
 }

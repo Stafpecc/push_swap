@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 18:12:44 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:26:33 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 typedef struct s_node
 {
 	int				value;
+	int				index;
 	struct s_node	*next;
 }	t_node;
 
@@ -101,5 +102,6 @@ int		find_biggest(t_stack *stack);
 int		count_nodes(t_stack *stack);
 int		find_bits(int biggest);
 int		sorted(t_stack *stack);
+int		array_index(t_stack *stack);
 
 #endif

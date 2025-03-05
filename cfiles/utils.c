@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:55:13 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 18:19:54 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:55:01 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,17 @@ int	find_biggest(t_stack *stack)
 
 int	find_bits(int biggest_nbr)
 {
-	int	max_bits;
+	int				max_bits;
+	unsigned int	nbr;
 
 	max_bits = 0;
-	while (biggest_nbr > 0)
+	nbr = (unsigned int)biggest_nbr;
+	while (nbr > 0)
 	{
-		biggest_nbr >>= 1;
+		nbr >>= 1;
 		max_bits++;
 	}
-	return (max_bits);
+	return (max_bits + 1);
 }
 
 int	count_nodes(t_stack *stack)

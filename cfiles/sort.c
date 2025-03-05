@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:45:33 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 18:19:45 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 19:58:10 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_stack	*create_stack(void)
 {
 	t_stack	*stack;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
+	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
 	stack->top = NULL;
@@ -24,15 +24,71 @@ t_stack	*create_stack(void)
 	return (stack);
 }
 
+int	array_index(t_stack *stack)
+{
+	int *array;
+	int i;
+	t_node *current;
+	int size;
+
+	i = 0;
+	current = stack->top;
+	size = 0;
+	while (current)
+	{
+		size++;
+		current = current->next;
+	}
+	array = malloc(sizeof(int) * size);
+	if (!array)
+		return (EXIT_FAILURE);
+	current = stack->top;
+	i = 0;
+	while (current)
+	{
+		array[i++] = current->value;
+		current = current->next;
+	}
+	for (int j = 0; j < size - 1; j++)
+	{
+		for (int k = 0; k < size - 1 - j; k++)
+		{
+			if (array[k] > array[k + 1])
+			{
+				int temp = array[k];
+				array[k] = array[k + 1];
+				array[k + 1] = temp;
+			}
+		}
+	}
+	current = stack->top;
+	while (current)
+	{
+		for (i = 0; i < size; i++)
+		{
+			if (array[i] == current->value)
+			{
+				current->index = i;
+				break;
+			}
+		}
+		current = current->next;
+	}
+	free(array);
+	return (EXIT_SUCCESS);
+}
+
 int	create_elements(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
-	new_node = (t_node *)malloc(sizeof(t_node));
+	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (EXIT_FAILURE);
 	new_node->value = value;
 	new_node->next = stack->top;
+	if (array_index(stack) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	stack->top = new_node;
 	if (!stack->bottom)
 		stack->bottom = new_node;

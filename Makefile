@@ -30,6 +30,7 @@ CFILES          = \
 			reverse_rotate			\
 			radix					\
 			swap					\
+			array_index				\
 			utils
 
 
