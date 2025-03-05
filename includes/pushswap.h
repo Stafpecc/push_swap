@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 21:54:46 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 22:01:41 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ int		count_nodes(t_stack *stack);
 int		find_bits(int biggest);
 int		sorted(t_stack *stack);
 int		array_index(t_stack *stack);
-
 
 #endif
