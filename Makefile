@@ -8,7 +8,6 @@
 
 
 NAME            = pushswap
-EXEC			= pushswap.out
 
 CFILES_DIR		= cfiles/
 OBJS_DIR		= .objs/
@@ -20,6 +19,7 @@ INC			    = -I ./includes/\
 LIBFT_NAME		= libft.a
 LIBFT_PATH      = $(LIBFT_DIR)$(LIBFT_NAME)
 
+EXEC			= $(EXEC_DIR)$(NAME)
 
 CFILES          = \
 			pushswap				\
@@ -30,6 +30,7 @@ CFILES          = \
 			reverse_rotate			\
 			radix					\
 			swap					\
+			utils
 
 
 SRC				= $(patsubst %, $(CFILES_DIR)%.c, $(CFILES))
@@ -48,7 +49,7 @@ AR				= ar -rcs
 AR_EXTRACT      = ar -x
 MAKE			= make
 
-CFLAGS 			= -Wall -Wextra -Werror -g
+CFLAGS 			= -Wall -Wextra -Werror -g3
 CFSIGSEV        = -fsanitize=address
 
 PURPLE          = \033[1;35m
@@ -119,7 +120,7 @@ clean:
 fclean: clean
 	echo "$(RED)Deleting $(NAME)...$(RESET)"
 
-		$(RM) $(EXEC)
+		$(RM_DIR) $(EXEC_DIR)
 		$(MAKE) -sC $(LIBFT_DIR) fclean
 
 	echo "$(GREEN)Deleting $(NAME) completed successfully!$(RESET)"
@@ -162,6 +163,23 @@ help:
 	echo " "
 	echo "$(GREEN)───────────────────────────────────────────────────────────────────"
 
+#------------------------------------------------------------------------------#
+# 							DIRECTORY CREATION RULES						   #
+#------------------------------------------------------------------------------#
+
+$(OBJS_DIR):
+	echo "$(YELLOW)Creating directory $(OBJS_DIR)...$(RESET)"
+		
+		mkdir -p $(OBJS_DIR)
+
+	echo "$(GREEN)Directory $(OBJS_DIR) created successfully!$(RESET)"
+
+$(EXEC_DIR):
+	echo "$(YELLOW)Creating directory $(EXEC_DIR)...$(RESET)"
+		
+		mkdir -p $(EXEC_DIR)
+
+	echo "$(GREEN)Directory $(OBJS_DIR) created successfully!$(RESET)"
 
 #------------------------------------------------------------------------------#
 # 							BUILD RULES										   #
@@ -197,20 +215,6 @@ $(LIBFT_NAME): FORCE
 
 	echo "$(GREEN)completed successfully!$(RESET)"
 
-
-$(OBJS_DIR):
-	echo "$(YELLOW)Creating directory $(OBJS_DIR)...$(RESET)"
-		
-		mkdir -p $(OBJS_DIR)
-
-	echo "$(GREEN)Directory $(OBJS_DIR) created successfully!$(RESET)"
-
-$(EXEC_DIR):
-	echo "$(YELLOW)Creating directory $(EXEC_DIR)...$(RESET)"
-		
-		mkdir -p $(EXEC_DIR)
-
-	echo "$(GREEN)Directory $(OBJS_DIR) created successfully!$(RESET)"
 
 $(OBJS_DIR)%.o: $(CFILES_DIR)%.c $(INCLUDE) | $(OBJS_DIR)
 	echo "$(PURPLE)Compiling $<...$(RESET)"

@@ -6,9 +6,15 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 15:09:48 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:12:44 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// ███████  ██    ██ ███████ ██   ██      ███████ ██     ██  █████  ██████  
+// ██    ██ ██    ██ ██      ██   ██      ██      ██     ██ ██   ██ ██   ██ 
+// ███████  ██    ██ █████   ███████      █████   ██  █  ██ ███████ ██████  
+// ██       ██    ██      ██ ██   ██           ██ ██ ███ ██ ██   ██ ██
+// ██        ██████  ███████ ██   ██      ███████  ███ ███  ██   ██ ██
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
@@ -19,45 +25,81 @@
 
 typedef struct s_node
 {
-    int value;
-    struct s_node *next;
-} t_node;
+	int				value;
+	struct s_node	*next;
+}	t_node;
 
 typedef struct s_stack
 {
-    t_node *top;
-    t_node *bottom;
-} t_stack;
+	t_node	*top;
+	t_node	*bottom;
+}	t_stack;
 
+/* ************************************************************************** */
+/*                              ROTATE REVERSE                                */
+/* ************************************************************************** */
 
-int reverse_rotate(t_stack *stack);
-int rra(t_stack *stack);
-int rrb(t_stack *stack);
-int rrr(t_stack *stack_a, t_stack *stack_b);
+int		reverse_rotate(t_stack *stack);
+int		rra(t_stack *stack);
+int		rrb(t_stack *stack);
+int		rr(t_stack *stack_a, t_stack *stack_b);
 
-int swap(t_stack *stack);
-int sa(t_stack *stack);
-int sb(t_stack *stack);
-int ss(t_stack *stack_a, t_stack *stack_b);
+/* ************************************************************************** */
+/*                                 SWAP                                       */
+/* ************************************************************************** */
 
-int rotate(t_stack *stack);
-int ra(t_stack *stack);
-int rb(t_stack *stack);
-int rr(t_stack *stack_a, t_stack *stack_b);
+int		swap(t_stack *stack);
+int		sa(t_stack *stack);
+int		sb(t_stack *stack);
+int		ss(t_stack *stack_a, t_stack *stack_b);
 
-int push(t_stack *stack_1, t_stack *stack_2);
-int pa(t_stack *stack_a, t_stack *stack_b);
-int pb(t_stack *stack_a, t_stack *stack_b);
+/* ************************************************************************** */
+/*                                ROTATE                                      */
+/* ************************************************************************** */
 
-int validate_argument(char *arg);
-int has_duplicates(int argc, char **argv);
+int		rotate(t_stack *stack);
+int		ra(t_stack *stack);
+int		rb(t_stack *stack);
+int		rr(t_stack *stack_a, t_stack *stack_b);
 
-t_stack *create_stack();
-int peek(t_stack *stack);
-int is_empty(t_stack *stack);
-void free_stack(t_stack *stack);
-int create_elements(t_stack *stack, int value);
+/* ************************************************************************** */
+/*                                 PUSH                                       */
+/* ************************************************************************** */
 
-void radix_sort(t_stack *stack_a, t_stack *stack_b, int size);
+int		push(t_stack *stack_1, t_stack *stack_2);
+int		pa(t_stack *stack_a, t_stack *stack_b);
+int		pb(t_stack *stack_a, t_stack *stack_b);
+
+/* ************************************************************************** */
+/*                               VALIDATION                                   */
+/* ************************************************************************** */
+
+int		validate_argument(char *arg);
+int		has_duplicates(int argc, char **argv);
+
+/* ************************************************************************** */
+/*                               STACK UTILS                                  */
+/* ************************************************************************** */
+
+t_stack	*create_stack(void);
+int		peek(t_stack *stack);
+int		is_empty(t_stack *stack);
+void	free_stack(t_stack *stack);
+int		create_elements(t_stack *stack, int value);
+
+/* ************************************************************************** */
+/*                               SORTING                                      */
+/* ************************************************************************** */
+
+void	sort_stack(t_stack *stack_a, t_stack *stack_b);
+
+/* ************************************************************************** */
+/*                            SORTING UTILS                                   */
+/* ************************************************************************** */
+
+int		find_biggest(t_stack *stack);
+int		count_nodes(t_stack *stack);
+int		find_bits(int biggest);
+int		sorted(t_stack *stack);
 
 #endif

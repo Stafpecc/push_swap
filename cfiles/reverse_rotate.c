@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 14:41:43 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 14:43:51 by tarini           ###   ########.fr       */
+/*   Created: 2025/03/05 18:13:01 by tarini            #+#    #+#             */
+/*   Updated: 2025/03/05 18:13:08 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int reverse_rotate(t_stack *stack)
+int	reverse_rotate(t_stack *stack)
 {
-    if (!stack || !stack->top || !stack->top->next)
-        return (EXIT_FAILURE);
-    t_node *prev = NULL;
-    t_node *current = stack->top;
-    while (current->next)
-    {
-        prev = current;
-        current = current->next;
-    }
-    current->next = stack->top;
-    stack->top = current;
-    prev->next = NULL;
-    stack->bottom = prev;
-    return (EXIT_SUCCESS);
+	t_node	*prev;
+	t_node	*current;
+
+	if (!stack || !stack->top || !stack->top->next)
+		return (EXIT_FAILURE);
+	prev = NULL;
+	current = stack->top;
+	while (current->next)
+	{
+		prev = current;
+		current = current->next;
+	}
+	current->next = stack->top;
+	stack->top = current;
+	prev->next = NULL;
+	stack->bottom = prev;
+	return (EXIT_SUCCESS);
 }
 
-int rra(t_stack *stack)
+int	rra(t_stack *stack)
 {
 	if (!stack || !stack->top || !stack->top->next)
 		return (EXIT_FAILURE);
@@ -40,7 +43,7 @@ int rra(t_stack *stack)
 	return (EXIT_SUCCESS);
 }
 
-int rrb(t_stack *stack)
+int	rrb(t_stack *stack)
 {
 	if (!stack || !stack->top || !stack->top->next)
 		return (EXIT_FAILURE);
@@ -50,7 +53,7 @@ int rrb(t_stack *stack)
 	return (EXIT_SUCCESS);
 }
 
-int rrr(t_stack *stack_a, t_stack *stack_b)
+int	rrr(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!stack_a || !stack_a->top || !stack_a->top->next || !stack_b
 		|| !stack_b->top || !stack_b->top->next)

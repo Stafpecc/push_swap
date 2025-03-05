@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:17:25 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 16:23:27 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:19:36 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ int	ft_atoi_overflow(const char *str, int *error)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (result > (LONG_MAX - (*str - '0')) / 10)
+		if (result > (INT_MAX - (*str - '0')) / 10)
 		{
 			*error = 1;
-			return 0;
+			return (0);
 		}
 		result = result * 10 + (*str - '0');
 		str++;
 	}
 	result *= sign;
-	if (result > INT_MAX || result < INT_MIN)
+	if (result > INT_MAX || result < (-__INT_MAX__ - 1))
 	{
 		*error = 1;
-		return 0;
+		return (0);
 	}
-	return (int)result;
+	return ((int)result);
 }

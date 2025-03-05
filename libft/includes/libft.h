@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 15:21:52 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/03 16:23:23 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:19:21 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 # include <stdarg.h>
 
 # define INT_MAX __INT_MAX__
-# define INT_MIN (-__INT_MAX__  -1)
 # define LONG_MAX __LONG_MAX__
-# define LONG_MIN (-__LONG_MAX__ - 1)
 # define UP_HEXA "0123456789ABCDEF"
 # define LOW_HEXA "0123456789abcdef"
 # define DECIMAL "0123456789"

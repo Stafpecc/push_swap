@@ -6,65 +6,64 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:45:33 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 15:10:51 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 18:19:45 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static int pop(t_stack *stack)
+t_stack	*create_stack(void)
 {
-    if (!stack || !stack->top)
-        return (EXIT_FAILURE);
-    t_node *temp = stack->top;
-    int value = temp->value;
-    stack->top = stack->top->next;
-    if (!stack->top)
-        stack->bottom = NULL;
-    free(temp);
-    return (value);
+	t_stack	*stack;
+
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->top = NULL;
+	stack->bottom = NULL;
+	return (stack);
 }
 
-t_stack *create_stack()
+int	create_elements(t_stack *stack, int value)
 {
-    t_stack *stack = (t_stack *)malloc(sizeof(t_stack));
-    if (!stack)
-        return (NULL);
-    stack->top = NULL;
-    stack->bottom = NULL;
-    return stack;
+	t_node	*new_node;
+
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!new_node)
+		return (EXIT_FAILURE);
+	new_node->value = value;
+	new_node->next = stack->top;
+	stack->top = new_node;
+	if (!stack->bottom)
+		stack->bottom = new_node;
+	return (EXIT_SUCCESS);
 }
 
-int create_elements(t_stack *stack, int value)
+int	peek(t_stack *stack)
 {
-    t_node *new_node;
-    
-    new_node = (t_node *)malloc(sizeof(t_node));
-    if (!new_node)
-        return (EXIT_FAILURE);
-    new_node->value = value;
-    new_node->next = stack->top;
-    stack->top = new_node;
-    if (!stack->bottom)
-        stack->bottom = new_node;
-    return (EXIT_SUCCESS);
+	if (!stack->top)
+		return ((-__INT_MAX__ - 1));
+	return (stack->top->value);
 }
 
-int peek(t_stack *stack)
+int	is_empty(t_stack *stack)
 {
-    if (!stack->top)
-        return (INT_MIN);
-    return (stack->top->value);
+	return (stack->top == NULL);
 }
 
-int is_empty(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-    return stack->top == NULL;
-}
+	t_node	*current;
+	t_node	*next_node;
 
-void free_stack(t_stack *stack)
-{
-    while (!is_empty(stack))
-        pop(stack);
-    free(stack);
+	if (stack == NULL)
+		return ;
+	current = stack->top;
+	while (current)
+	{
+		next_node = current->next;
+		free(current);
+		current = next_node;
+	}
+	stack->top = NULL;
 }
