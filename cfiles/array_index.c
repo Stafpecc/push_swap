@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:48:49 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 19:59:21 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/05 20:42:39 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ int	array_index(t_stack *stack)
 	int	*array;
 
 	size = get_stack_size(stack);
-	if (size == 0)
-		return (EXIT_FAILURE);
 	array = create_sorted_array(stack, size);
 	if (!array)
 		return (EXIT_FAILURE);

@@ -13,6 +13,7 @@ CFILES_DIR		= cfiles/
 OBJS_DIR		= .objs/
 EXEC_DIR		= exec/
 LIBFT_DIR		= libft/
+INCLUDE			= includes/pushswap.h
 INC			    = -I ./includes/\
 				  -I ./$(LIBFT_DIR)includes/
 
@@ -187,7 +188,7 @@ $(EXEC_DIR):
 #------------------------------------------------------------------------------#
 
 
-$(NAME): $(LIBFT_NAME) $(OBJS) | $(EXEC_DIR)
+$(NAME): $(LIBFT_NAME) $(OBJS) $(INCLUDE) | $(EXEC_DIR)
 	echo "$(PURPLE)Compiling $(NAME) in progress...$(RESET)"
 
 		$(CC) $(CFLAGS) -o $(EXEC) $(OBJS) $(LIBFT_PATH)
@@ -210,11 +211,7 @@ $(NAME): $(LIBFT_NAME) $(OBJS) | $(EXEC_DIR)
 
 
 $(LIBFT_NAME): FORCE
-	echo "$(PURPLE)Compiling of $(LIBFT_NAME) loading...$(RESET)"
-
 		$(MAKE) -sC $(LIBFT_DIR)
-
-	echo "$(GREEN)completed successfully!$(RESET)"
 
 
 $(OBJS_DIR)%.o: $(CFILES_DIR)%.c $(INCLUDE) | $(OBJS_DIR)

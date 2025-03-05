@@ -67,6 +67,9 @@ INCS= includes
 
 DEPS= $(OBJS:.o=.d)
 
+PURPLE          = \033[1;35m
+GREEN           = \033[1;32m
+RESET           = \033[0m
 
 #------------------------------------------------------------------------------#
 # 							COMMANDS									       #
@@ -93,8 +96,10 @@ MAKEFLAGS += --no-print-directory
 all:$(NAME)
 
 
-$(NAME): $(OBJS) $(INCS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(INCS)/$(INC_NAME)
+	echo "$(PURPLE)Compiling $(NAME)...$(RESET)"
+		$(AR) $(NAME) $(OBJS)
+	echo "$(GREEN)$(NAME) compiled successfully!$(RESET)"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(DIR_DUP)
