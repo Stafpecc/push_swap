@@ -29,6 +29,7 @@ CFILES          = \
 			push					\
 			rotate					\
 			reverse_rotate			\
+			ret						\
 			radix					\
 			swap					\
 			array_index				\
