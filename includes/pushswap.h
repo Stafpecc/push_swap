@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 22:01:41 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:06:36 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int		peek(t_stack *stack);
 int		is_empty(t_stack *stack);
 void	free_stack(t_stack *stack);
 int		create_elements(t_stack *stack, int value);
+int		initialize_stacks_and_fill(int argc, char **argv, t_stack **stack_a,
+			t_stack **stack_b);
 
 /* ************************************************************************** */
 /*                               SORTING                                      */

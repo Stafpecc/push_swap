@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:27:47 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 22:08:53 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:05:00 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	sort_three(t_stack *stack)
 	int	second;
 	int	third;
 
+	if (!stack->top || !stack->top->next || !stack->top->next->next)
+		return ;
 	first = stack->top->index;
 	second = stack->top->next->index;
 	third = stack->top->next->next->index;
@@ -39,14 +41,28 @@ static void	sort_three(t_stack *stack)
 		rra(stack);
 }
 
+static void	sort_four(t_stack *stack_a, t_stack *stack_b)
+{
+	while (count_nodes(stack_a) > 3)
+	{
+		while (stack_a->top->index != 0)
+			ra(stack_a);
+		pb(stack_a, stack_b);
+	}
+	sort_three(stack_a);
+	pa(stack_a, stack_b);
+}
+
 static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
 	while (count_nodes(stack_a) > 3)
 	{
-		if (stack_a->top->index == 0 || stack_a->top->index == 1)
-			pb(stack_a, stack_b);
-		else
+		while (stack_a->top->index != 0)
 			ra(stack_a);
+		pb(stack_a, stack_b);
+		while (stack_a->top->index != 1)
+			ra(stack_a);
+		pb(stack_a, stack_b);
 	}
 	sort_three(stack_a);
 	if (stack_b->top && stack_b->top->next && stack_b->top->index
@@ -92,6 +108,8 @@ void	sort_stack(t_stack *stack_a, t_stack *stack_b)
 	size = count_nodes(stack_a);
 	if (!sorted(stack_a) && size <= 3)
 		sort_three(stack_a);
+	else if (!sorted(stack_a) && size <= 4)
+		sort_four(stack_a, stack_b);
 	else if (!sorted(stack_a) && size <= 5)
 		sort_five(stack_a, stack_b);
 	else if (!sorted(stack_a))
