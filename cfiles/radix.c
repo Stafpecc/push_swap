@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:27:47 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/06 15:05:00 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:13:52 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,28 @@ static void	sort_four(t_stack *stack_a, t_stack *stack_b)
 
 static void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
+	int	pos_0;
+	int	pos_1;
+	int	min_pos;
+
 	while (count_nodes(stack_a) > 3)
 	{
-		while (stack_a->top->index != 0)
-			ra(stack_a);
-		pb(stack_a, stack_b);
-		while (stack_a->top->index != 1)
-			ra(stack_a);
+		pos_0 = find_position(stack_a, 0);
+		pos_1 = find_position(stack_a, 1);
+		if (pos_0 < pos_1)
+			min_pos = pos_0;
+		else
+			min_pos = pos_1;
+		while (stack_a->top->index != 0 && stack_a->top->index != 1)
+		{
+			if (min_pos <= count_nodes(stack_a) / 2)
+				ra(stack_a);
+			else
+				rra(stack_a);
+		}
 		pb(stack_a, stack_b);
 	}
 	sort_three(stack_a);
-	if (stack_b->top && stack_b->top->next && stack_b->top->index
-		< stack_b->top->next->index)
-		sb(stack_b);
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
 }
 
 static void	radix_sort(t_stack *stack_a, t_stack *stack_b)
@@ -111,7 +118,14 @@ void	sort_stack(t_stack *stack_a, t_stack *stack_b)
 	else if (!sorted(stack_a) && size <= 4)
 		sort_four(stack_a, stack_b);
 	else if (!sorted(stack_a) && size <= 5)
+	{
 		sort_five(stack_a, stack_b);
+		if (stack_b->top && stack_b->top->next && stack_b->top->index
+			< stack_b->top->next->index)
+			sb(stack_b);
+		pa(stack_a, stack_b);
+		pa(stack_a, stack_b);
+	}
 	else if (!sorted(stack_a))
 		radix_sort(stack_a, stack_b);
 	else

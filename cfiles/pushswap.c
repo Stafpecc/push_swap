@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:10:45 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/06 15:24:16 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:58:02 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	main(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc < 2)
-		return (printf_ret());
 	if (initialize_stacks_and_fill(argc, argv, &stack_a, &stack_b)
 		== EXIT_FAILURE)
 		return (EXIT_FAILURE);

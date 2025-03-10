@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:55:13 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/06 15:23:50 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/10 17:12:00 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,21 @@ int	sorted(t_stack *stack)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+int	find_position(t_stack *stack, int index)
+{
+	t_node	*current;
+	int		position;
+
+	current = stack->top;
+	position = 0;
+	while (current)
+	{
+		if (current->index == index)
+			return (position);
+		current = current->next;
+		position++;
+	}
+	return (EXIT_FAILURE);
 }

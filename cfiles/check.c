@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:28:22 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/05 21:54:26 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:56:37 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int	validate_argument(char *arg)
 
 	error = 0;
 	j = 0;
+	if (arg[j] == '-' || arg[j] == '+')
+		j++;
+	if (arg[j] == '\0')
+		return (EXIT_FAILURE);
 	while (arg[j])
 	{
-		if (!ft_isdigit(arg[j]) && arg[j] != '-' && arg[j] != '+')
+		if (!ft_isdigit(arg[j]))
 			return (EXIT_FAILURE);
 		j++;
 	}
