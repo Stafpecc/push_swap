@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:01:26 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/10 17:08:41 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/11 14:13:03 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,14 @@ int		printf_ret(void);
 int		printf_ret_free_all_stack(t_stack *stack_a, t_stack *stack_b);
 int		printf_ret_free_stack_a(t_stack *stack_a);
 int		ret_free_success(t_stack *stack_a, t_stack *stack_b);
+
+/* ************************************************************************** */
+/*                        		SORT_NUMBER                                   */
+/* ************************************************************************** */
+
+void	sort_two(t_stack *stack);
+void	sort_three(t_stack *stack);
+void	sort_four(t_stack *stack_a, t_stack *stack_b);
+void	sort_five(t_stack *stack_a, t_stack *stack_b);
 
 #endif

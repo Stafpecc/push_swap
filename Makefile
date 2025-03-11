@@ -32,6 +32,7 @@ CFILES          = \
 			ret						\
 			radix					\
 			swap					\
+			sort_number				\
 			array_index				\
 			utils
 
