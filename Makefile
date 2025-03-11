@@ -7,7 +7,7 @@
 #------------------------------------------------------------------------------#
 
 
-NAME            = pushswap
+NAME            = push_swap
 
 CFILES_DIR		= cfiles/
 OBJS_DIR		= .objs/

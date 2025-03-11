@@ -6,7 +6,7 @@
 /*   By: tarini <tarini@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:13:01 by tarini            #+#    #+#             */
-/*   Updated: 2025/03/06 14:46:57 by tarini           ###   ########.fr       */
+/*   Updated: 2025/03/11 13:26:40 by tarini           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,3 @@ int	rrr(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("rrr\n");
 	return (EXIT_SUCCESS);
 }
-
-// int smart_rotate(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	//rotate ou reverse rotate 
-// }
